@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class Car : MonoBehaviour {
-
+    public int gamepadIndex;  
 	[SerializeField]
 	bool IsPlayerControlled = false;
 
