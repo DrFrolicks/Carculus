@@ -156,6 +156,10 @@ public class Car : MonoBehaviour {
 		TrackWidth = Mathf.Abs (AxleRear.TireLeft.transform.position.x - AxleRear.TireRight.transform.position.x);
 	}
 
+    public void steer(float)
+    {
+
+    }
 	void Update() {
 
 		if (IsPlayerControlled) {
