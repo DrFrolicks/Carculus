@@ -38,8 +38,9 @@ GameObject:
   - component: {fileID: 50697891195593924}
   - component: {fileID: 61222567062935202}
   - component: {fileID: 114309564599585348}
+  - component: {fileID: 114635750696298774}
   m_Layer: 0
-  m_Name: Car (1)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +231,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1089027001498402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.66, y: 2.71, z: 0}
+  m_LocalPosition: {x: 2.4058533, y: -0.34639752, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4136583030074102}
@@ -457,7 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e26dfb546b01c49800c6bd2ab66c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsPlayerControlled: 0
+  gamepadIndex: 0
+  IsPlayerControlled: 1
   CGHeight: 0.55
   InertiaScale: 1
   BrakePower: 12000
@@ -508,6 +510,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce498e21a85060b488dd9e5b28747a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114635750696298774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089027001498402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb098f2d439d234e87449c8fa42778c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GamepadIndex: 0
 --- !u!114 &114644300306952764
 MonoBehaviour:
   m_ObjectHideFlags: 1

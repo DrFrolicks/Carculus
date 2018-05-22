@@ -5,9 +5,8 @@ using GamepadInput;
 
 [RequireComponent(typeof(Car))]
 public class Player : MonoBehaviour {
-    public int index;
+    public GamePad.Index GamepadIndex;
     Car car; 
-    GamePad.Index GPindex;
 
     private void Awake()
     {
@@ -15,25 +14,12 @@ public class Player : MonoBehaviour {
     }
     private void Start()
     {
-        switch(index)
-        {
-            case 0:
-                GPindex = GamePad.Index.One;
-                break;
-            case 1:
-                GPindex = GamePad.Index.Two;
-                break;
-            case 2:
-                GPindex = GamePad.Index.Three;
-                break;
-            case 3:
-                GPindex = GamePad.Index.Four;
-                break;
-        }        
     }
 
     private void Update()
     {
-        car.
+        car.steer(GamePad.GetAxis(GamePad.Axis.LeftStick, GamepadIndex, true).x);
+        car.setThrottle(GamePad.GetAxis(GamePad.Axis.LeftStick, GamepadIndex, true).y); 
+        
     }
 }

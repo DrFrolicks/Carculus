@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GamepadInput; 
 
 public class PlayerManager : MonoBehaviour {
     public static PlayerManager instance;
@@ -15,13 +16,40 @@ public class PlayerManager : MonoBehaviour {
             instance = this; 
     }
 
-    public void spawnPlayer()
+    public void spawnPlayer(GamePad.Index index)
     {
         if (numOfPlayers >= spawnLocations.Length)
             return;
 
         Player p = Instantiate(PlayerPrefab, spawnLocations[numOfPlayers].position, Quaternion.identity).GetComponent<Player>();
-        p.index = numOfPlayers;  
+        p.GamepadIndex = index;  
+
         numOfPlayers++;  
+    }
+
+    List<GamePad.Index> GamepadIndexesActive = new List<GamePad.Index>(); 
+    private void Update()
+    {
+        for (int i = 1; i < 5; i++)
+            spawnOnGamepadInput((GamePad.Index)i); 
+
+    }
+
+    void spawnOnGamepadInput(GamePad.Index index)
+    {
+        if (leftStickFirstMoved(index))
+        {
+            spawnPlayer(index);
+        }
+    }
+
+    bool leftStickFirstMoved(GamePad.Index index)
+    {
+        if(GamePad.GetAxis(GamePad.Axis.LeftStick, index) != Vector2.zero && !GamepadIndexesActive.Contains(index))
+        {
+            GamepadIndexesActive.Add(index);
+            return true; 
+        }
+        return false;  
     }
 }
