@@ -68,12 +68,12 @@ namespace GamepadInput
                 if (raw == false)
                 {
                     axisXY.x = Input.GetAxis(xName);
-                    axisXY.y = Input.GetAxis(yName);
+                    axisXY.y = -Input.GetAxis(yName);
                 }
                 else
                 {
                     axisXY.x = Input.GetAxisRaw(xName);
-                    axisXY.y = Input.GetAxisRaw(yName);
+                    axisXY.y = -Input.GetAxisRaw(yName);
                 }
             }
             catch (System.Exception e)
