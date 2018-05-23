@@ -31,8 +31,9 @@ public class ProblemSet : MonoBehaviour {
                 percentComplete = (Time.time - timeAtStart) / promptDuration[i]; // to be used by text display 
                 yield return new WaitForEndOfFrame();  
             }
-            GameManager.instance.triggerPromptIntervalEnd();  
+            GameManager.instance.nextPrompt();  
         }
+        GameManager.instance.nextGraph(); 
     }
 
     
