@@ -5,13 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public GameObject conclusionScreen;
+    public GameObject titleScreen;
 
     public float firewallDuration;
     public ActiveTemporary firewall;
 
     public GameObject[] graphs;
     List<GameObject> graphsAvailable;
-    GameObject activeGraph; 
+    GameObject activeGraph;
+
 
     private void Awake()
     {
@@ -20,10 +22,23 @@ public class GameManager : MonoBehaviour {
 
         refreshGraphs(); 
     }
-
+    private void Start()
+    {
+        nextGraph();
+    }
+    private void Update()
+    {
+        if (PlayerManager.instance.players.Count > 0 && !IsInvoking("killTitle") && titleScreen.activeSelf)
+            Invoke("killTitle", 3f); 
+    }
+    void killTitle()
+    {
+        titleScreen.SetActive(false); 
+    }
     public void nextPrompt()
     {
         firewall.activate(firewallDuration);
+
         Invoke("checkWinner", firewallDuration / 2); 
     }
 
@@ -42,12 +57,12 @@ public class GameManager : MonoBehaviour {
     {
         graphsAvailable = new List<GameObject>(graphs); 
     }
+
     void checkWinner()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length == 1)
+        if (PlayerManager.instance.players.Count == 1)
         {
-            win(players[0]); 
+            win(PlayerManager.instance.players[0]); 
         }
     }
 

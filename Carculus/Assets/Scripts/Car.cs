@@ -384,7 +384,7 @@ public class Car : MonoBehaviour {
 	}
 
 	float SpeedAdjustedSteering(float steerInput) {
-		float activeVelocity = Mathf.Min(AbsoluteVelocity, 250.0f);
+		//float activeVelocity = Mathf.Min(AbsoluteVelocity, 250.0f);
 		float steer = steerInput * (1.0f - (AbsoluteVelocity / SpeedSteerCorrection));
 		return steer;
 	}

@@ -8,13 +8,25 @@ public class PlayerManager : MonoBehaviour {
     public GameObject PlayerPrefab;
     public Transform[] spawnLocations; 
 
-    public int numOfPlayers; 
+    public int numOfPlayers;
+
+    List<GamePad.Index> GamepadIndexesActive;
+
+    public List<GameObject> players; 
+    public List<GameObject> refreshPlayers()
+    {
+        players = new List<GameObject> (GameObject.FindGameObjectsWithTag("Player"));
+        return players; 
+    }
 
     private void Awake()
     {
         if (instance == null)
-            instance = this; 
+            instance = this;
+
+       GamepadIndexesActive = new List<GamePad.Index>();
     }
+
 
     public void spawnPlayer(GamePad.Index index)
     {
@@ -22,12 +34,11 @@ public class PlayerManager : MonoBehaviour {
             return;
 
         Player p = Instantiate(PlayerPrefab, spawnLocations[numOfPlayers].position, Quaternion.identity).GetComponent<Player>();
-        p.GamepadIndex = index;  
+        p.GamepadIndex = index;
 
-        numOfPlayers++;  
+        numOfPlayers++;
+        players.Add(p.gameObject);
     }
-
-    List<GamePad.Index> GamepadIndexesActive = new List<GamePad.Index>(); 
     private void Update()
     {
         for (int i = 1; i < 5; i++)
@@ -45,7 +56,8 @@ public class PlayerManager : MonoBehaviour {
 
     bool leftStickFirstMoved(GamePad.Index index)
     {
-        if(GamePad.GetAxis(GamePad.Axis.LeftStick, index) != Vector2.zero && !GamepadIndexesActive.Contains(index))
+
+        if((GamePad.GetAxis(GamePad.Axis.LeftStick, index) != Vector2.zero || Input.GetAxisRaw("Vertical_" + (int)index) != 0) && !GamepadIndexesActive.Contains(index))
         {
             GamepadIndexesActive.Add(index);
             return true; 

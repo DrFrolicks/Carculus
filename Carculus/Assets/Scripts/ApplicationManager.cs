@@ -9,7 +9,7 @@ public class ApplicationManager : MonoBehaviour {
 
     public float ESCQuitReqHoldDuration;
 
-    public GameObject pauseScreen;  
+    public GameObject pauseScreen;
 
     [HideInInspector]
     public float ESCHoldDuration; 
@@ -39,7 +39,7 @@ public class ApplicationManager : MonoBehaviour {
                 Application.Quit();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Cancel"))
         {
             loadScene(0);
         }

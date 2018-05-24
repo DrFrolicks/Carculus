@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
     {
         car.steer(GamePad.GetAxis(GamePad.Axis.LeftStick, GamepadIndex, true).x);
         car.setThrottle(GamePad.GetAxis(GamePad.Axis.LeftStick, GamepadIndex, true).y);
-        if (GamePad.GetAxis(GamePad.Axis.LeftStick, GamepadIndex, true).y == 0)
+        if (GamePad.GetAxis(GamePad.Axis.LeftStick, GamepadIndex, true).y == 0 && GamepadIndex != 0)
             car.setThrottle(Input.GetAxis("Vertical_" + (int)GamepadIndex)); 
     }
 }
