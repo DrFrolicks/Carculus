@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
+    public enum GameMode {singleplayer, multiplayer}; 
+    
     public GameObject conclusionScreen;
     public GameObject titleScreen;
 
@@ -14,7 +16,7 @@ public class GameManager : MonoBehaviour {
     List<GameObject> graphsAvailable;
     GameObject activeGraph;
 
-
+    
     private void Awake()
     {
         if (instance == null)
@@ -22,19 +24,23 @@ public class GameManager : MonoBehaviour {
 
         refreshGraphs(); 
     }
+
     private void Start()
     {
         nextGraph();
     }
+    
     private void Update()
     {
-        if (PlayerManager.instance.players.Count > 0 && !IsInvoking("killTitle") && titleScreen.activeSelf)
-            Invoke("killTitle", 3f); 
+        if (PlayerManager.instance.players.Count > 0 && !IsInvoking("startGame") && titleScreen.activeSelf)
+            Invoke("startGame", 3f); 
     }
-    void killTitle()
+
+    void startGame()
     {
         titleScreen.SetActive(false); 
     }
+
     public void nextPrompt()
     {
         firewall.activate(firewallDuration);

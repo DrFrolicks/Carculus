@@ -30,13 +30,12 @@ public class PlayerManager : MonoBehaviour {
 
     public void spawnPlayer(GamePad.Index index)
     {
-        if (numOfPlayers >= spawnLocations.Length)
+        if (players.Count >= spawnLocations.Length)
             return;
 
-        Player p = Instantiate(PlayerPrefab, spawnLocations[numOfPlayers].position, Quaternion.identity).GetComponent<Player>();
+        Player p = Instantiate(PlayerPrefab, spawnLocations[players.Count].position, Quaternion.identity).GetComponent<Player>();
         p.GamepadIndex = index;
 
-        numOfPlayers++;
         players.Add(p.gameObject);
     }
     private void Update()
